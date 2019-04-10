@@ -26,7 +26,7 @@ namespace ConsoleApp1
         int linenumbers = 1;
         ArrayList lineNumbers2 = new ArrayList();
 
-        static void Main(string[] args)
+        static void Main(string[] args
 
         {
 
