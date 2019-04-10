@@ -23,6 +23,8 @@ namespace ConsoleApp1
     {
 
         ArrayList Beowulf;
+        int linenumbers = 1;
+        ArrayList lineNumbers2 = new ArrayList();
 
         static void Main(string[] args)
 
@@ -31,6 +33,8 @@ namespace ConsoleApp1
             Program p = new Program();
 
             p.Beowulf = new ArrayList();
+           
+          
 
             p.ReadTextFiles();
 
@@ -44,7 +48,7 @@ namespace ConsoleApp1
 
         {
 
-            using (StreamReader file = new StreamReader(@"U:\Users\726115\Beowulf.txt"))
+            using (StreamReader file = new StreamReader("U:/Users/726115/Beowulf.txt"))
 
             {
 
@@ -112,40 +116,105 @@ namespace ConsoleApp1
 
         }
 
-        public int FindNumberOfBlankSpaces(String line)
+        public void numberoflines(String line)
 
         {
-
-            int countletters = 0;
-
-            int countspaces = 0;
+            StreamReader file = new StreamReader("U:/Users/726115/Beowulf.txt");
 
 
-
-            foreach (char c in line)
-
+            int counter = 0;
+            int number = 0;
+            string ln;
+            while ((line = file.ReadLine()) != null)
             {
-
-                if (char.IsLetter(c))
-
-                { countletters++; }
-
-                if (char.IsWhiteSpace(c))
-
-
-
+                if (line.Contains("Sea") && line.Contains("Fare") || line.Contains("sea") && line.Contains("fare"))
                 {
-
-                    countspaces++;
-
+                    int x = counter - 1;
+                    number++;
                 }
+                counter++;
+            }
+            Console.WriteLine($"The number of lines that contains *Sea* and *Fare* are {number}");
+
+            file.Close();
+        }
+        public int FindNumberOfBlankSpaces(string line)
+        {
+            int countletters = 0;
+            int countSpaces = 0;
+            foreach (char c in line)
+            {
+                if (char.IsLetter(c)) { countletters++; }
+                if (char.IsWhiteSpace(c)) { countSpaces++; }
 
             }
-
-            return countspaces;
-
+            return countSpaces;
         }
 
+
+
+        public void Averagenumber()
+            {
+
+                using (StreamReader sr = new StreamReader("U:/Users/726115/Beowulf.txt"))
+                {
+                    string line;
+                    int counter = 0;
+                    int b = 0, myWord = 1;
+                    int averageLetterPerWord;
+                    int counterletters = 0;
+                    int countspaces = 0;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                        Beowulf.Add(line);
+                        FindNumberOfBlankSpaces(line);
+                        counter++;
+
+                        while (b <= line.Length - 1)
+                        {
+                            if (line[b] == ' ' || line[b] == '\n' || line[b] == '\t')
+                            {
+                                myWord++;
+                            }
+                            b++;
+                        }
+                        b = 0;
+
+                    }
+
+                    averageLetterPerWord = counterletters / countspaces;
+
+                    Console.WriteLine("\n\n\n\n********************************\nThe number of lines in the paragraph is " + counter);
+                    Console.WriteLine("The number of words in paragraph is " + myWord);
+                    Console.WriteLine("The number of average letters per word is " + averageLetterPerWord);
+                    Console.ReadLine();
+
+
+
+
+
+
+                    // SECTION D
+                    if (line.Substring(0).Contains("fare") || line.Substring(0).Contains("Fare"))
+                    {
+                        if (!(line.Substring(0).Contains("war") || line.Substring(0).Contains("War")))
+                        {
+                            lineNumbers2.Add(linenumbers);
+                        }
+                       
+
+                    }
+                }
+            }
+
+
+
+
+
+
+        }
     }
 
-}
+        
